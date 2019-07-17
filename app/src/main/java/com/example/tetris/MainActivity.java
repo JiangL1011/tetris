@@ -1,25 +1,16 @@
 package com.example.tetris;
 
-import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.GridLayout;
-import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tetris.adapter.GameCellAdapter;
-
-import static com.example.tetris.util.MeasureUtil.dip2px;
+import com.example.tetris.component.GameCell;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,14 +74,19 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < 10; j++) {
                 GridLayout.Spec rowSpec = GridLayout.spec(i, 1f);
                 GridLayout.Spec colSpec = GridLayout.spec(j, 1f);
-                View view = new View(this);
-                view.setBackgroundColor(Color.parseColor("#6495ED"));
-                view.setPadding(2, 2, 2, 2);
+                GameCell cell = new GameCell(this, i, j);
                 //取控件当前的布局参数
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec, colSpec);
                 //使设置好的布局参数应用到控件
-                view.setLayoutParams(params);
-                gameView.addView(view);
+                cell.setLayoutParams(params);
+
+                GradientDrawable drawable = new GradientDrawable();
+                drawable.setStroke(2, Color.parseColor("#51E2F5"));
+                drawable.setColor(Color.parseColor("#51E2F5"));
+
+                cell.setBackground(drawable);
+
+                gameView.addView(cell);
             }
         }
     }
