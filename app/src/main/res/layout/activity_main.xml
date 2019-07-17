@@ -7,14 +7,17 @@
     tools:context=".MainActivity">
 
 
-    <GridView
+    <GridLayout
         android:id="@+id/game"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="288dp"
+        android:layout_height="480dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"
         android:numColumns="10"
+        android:rowCount="20"
         android:horizontalSpacing="0dp"
         android:verticalSpacing="0dp"/>
 
