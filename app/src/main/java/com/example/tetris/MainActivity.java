@@ -1,18 +1,21 @@
 package com.example.tetris;
 
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tetris.component.GameCell;
+import com.example.tetris.adapter.GridViewAdapter;
+import com.example.tetris.cube.Cube;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final int[][] coordinate = new int[20][10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,27 +71,19 @@ public class MainActivity extends AppCompatActivity {
         initGameInterface();
     }
 
-    public void initGameInterface() {
-        GridLayout gameView = findViewById(R.id.game);
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 10; j++) {
-                GridLayout.Spec rowSpec = GridLayout.spec(i, 1f);
-                GridLayout.Spec colSpec = GridLayout.spec(j, 1f);
-                GameCell cell = new GameCell(this, i, j);
-                //取控件当前的布局参数
-                GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec, colSpec);
-                //使设置好的布局参数应用到控件
-                cell.setLayoutParams(params);
-
-                GradientDrawable drawable = new GradientDrawable();
-                drawable.setStroke(2, Color.parseColor("#51E2F5"));
-                drawable.setColor(Color.parseColor("#51E2F5"));
-
-                cell.setBackground(drawable);
-
-                gameView.addView(cell);
-            }
+    private void initGameInterface() {
+        int[] tCube = Cube.T;
+        for (int position : tCube) {
+            System.out.println(R.drawable.blue_cube);
+            System.out.println(Integer.MAX_VALUE);
+            coordinate[position / 10][position % 10] = R.drawable.blue_cube;
         }
-    }
 
+        System.out.println(Arrays.toString(coordinate[0]));
+        System.out.println(Arrays.toString(coordinate[1]));
+
+        GridView gameView = findViewById(R.id.tetrisView);
+        GridViewAdapter adapter = new GridViewAdapter(MainActivity.this, coordinate);
+        gameView.setAdapter(adapter);
+    }
 }

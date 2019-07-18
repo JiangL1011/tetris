@@ -7,19 +7,18 @@
     tools:context=".MainActivity">
 
 
-    <GridLayout
-        android:id="@+id/game"
-        android:layout_width="288dp"
+    <GridView
+        android:id="@+id/tetrisView"
+        android:layout_width="240dp"
         android:layout_height="480dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
-        android:numColumns="10"
-        android:rowCount="20"
+        android:background="#FFFFFF"
         android:horizontalSpacing="0dp"
-        android:verticalSpacing="0dp"/>
+        android:numColumns="10"
+        android:verticalSpacing="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></GridView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizonLine1"
